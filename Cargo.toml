@@ -1,0 +1,21 @@
+[package]
+name = "openrtb-native1"
+version = "0.1.0"
+authors = ["mechiru <u9053u6d41@gmail.com>"]
+edition = "2018"
+license = "MIT OR Apache-2.0"
+description = "An implementation of OpenRTB Dynamic Native Ads 1.2 Final."
+repository = "https://github.com/mechiru/openrtb-native1"
+documentation = "https://docs.rs/openrtb-native1"
+categories = ["api-bindings"]
+keywords = ["iab", "openrtb", "openrtb-native"]
+readme = "README.md"
+
+[dev-dependencies]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0" }
+default-ext = { version = "0.1" }
+json-ext = { version = "0.3" }
+openrtb2 = { version = "0.2" }
