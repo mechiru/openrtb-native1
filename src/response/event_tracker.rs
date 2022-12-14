@@ -25,13 +25,13 @@ pub struct EventTracker<'a> {
     /// tracking, for example the account number of the DSP with a tracking company. IE
     /// `{“accountnumber”:”123”}`.
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
-    pub customdata: Option<json_ext::Object<'a>>,
+    pub customdata: Option<serde_json::Map<String, serde_json::Value>>,
 
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
-    pub ext: Option<json_ext::Object<'a>>,
+    pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 
 #[cfg(test)]

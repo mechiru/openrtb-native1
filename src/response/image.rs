@@ -33,7 +33,7 @@ pub struct Image<'a> {
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
-    pub ext: Option<json_ext::Object<'a>>,
+    pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 
 #[cfg(test)]
