@@ -5,27 +5,26 @@
 /// Native Ad response object. When that peer object is activated (clicked) the action should take
 /// the user to the location of the link.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Link<'a> {
+pub struct Link {
     /// required; string; -
     /// Landing URL of the clickable link.
-    #[serde(borrow)]
-    pub url: std::borrow::Cow<'a, str>,
+    pub url: String,
 
     /// optional; array of string; -
     /// List of third-party tracker URLs to be fired on click of the URL.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
-    pub clicktrackers: Option<Vec<std::borrow::Cow<'a, str>>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub clicktrackers: Option<Vec<String>>,
 
     /// optional; string(URL); -
     /// Fallback URL for deeplink. To be used if the URL given in url is not supported by the
     /// device.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
-    pub fallback: Option<std::borrow::Cow<'a, str>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub fallback: Option<String>,
 
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

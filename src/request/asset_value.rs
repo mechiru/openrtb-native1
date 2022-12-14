@@ -6,28 +6,24 @@
 /// [`Data`]: ./struct.Data.html
 #[derive(serde::Serialize, serde::Deserialize, Debug, PartialEq, Clone)]
 #[serde(rename_all = "snake_case")]
-pub enum AssetValue<'a> {
+pub enum AssetValue {
     /// recommended; object; -
     /// Title object for title assets. See TitleObject definition.
-    #[serde(borrow)]
-    Title(crate::request::Title<'a>),
+    Title(crate::request::Title),
     /// recommended; object; -
     /// Image object for image assets. See ImageObject definition.
-    #[serde(borrow)]
-    Img(crate::request::Image<'a>),
+    Img(crate::request::Image),
     /// optional1; object; -
     /// Video object for video assets. See the Video request object definition. Note that in-stream
     /// (ie preroll, etc) video ads are not part of Native. Native ads may contain a video as the
     /// ad creative itself.
-    #[serde(borrow)]
-    Video(crate::request::Video<'a>),
+    Video(crate::request::Video),
     /// recommended; object; -
     /// Data object for brand name, description, ratings, prices etc. See DataObject definition.
-    #[serde(borrow)]
-    Data(crate::request::Data<'a>),
+    Data(crate::request::Data),
 }
 
-impl<'a> AssetValue<'a> {
+impl AssetValue {
     pub fn is_title(&self) -> bool {
         self.as_title().is_some()
     }
@@ -39,7 +35,7 @@ impl<'a> AssetValue<'a> {
         }
     }
 
-    pub fn as_title_mut(&'a mut self) -> Option<&'a mut crate::request::Title> {
+    pub fn as_title_mut(&mut self) -> Option<&mut crate::request::Title> {
         match self {
             Self::Title(ref mut title) => Some(title),
             _ => None,
@@ -57,7 +53,7 @@ impl<'a> AssetValue<'a> {
         }
     }
 
-    pub fn as_image_mut(&'a mut self) -> Option<&'a mut crate::request::Image> {
+    pub fn as_image_mut(&mut self) -> Option<&mut crate::request::Image> {
         match self {
             Self::Img(ref mut image) => Some(image),
             _ => None,
@@ -75,7 +71,7 @@ impl<'a> AssetValue<'a> {
         }
     }
 
-    pub fn as_video_mut(&'a mut self) -> Option<&'a mut crate::request::Video> {
+    pub fn as_video_mut(&mut self) -> Option<&mut crate::request::Video> {
         match self {
             Self::Video(ref mut video) => Some(video),
             _ => None,
@@ -93,7 +89,7 @@ impl<'a> AssetValue<'a> {
         }
     }
 
-    pub fn as_data_mut(&'a mut self) -> Option<&'a mut crate::request::Data> {
+    pub fn as_data_mut(&mut self) -> Option<&mut crate::request::Data> {
         match self {
             Self::Data(ref mut data) => Some(data),
             _ => None,

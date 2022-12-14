@@ -2,7 +2,7 @@
 ///
 /// The Title object is to be used for title element of the Native ad.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Title<'a> {
+pub struct Title {
     /// required; integer; -
     /// Maximum length of the text in the title element. Recommended to be 25, 90, or 140.
     pub len: i32,
@@ -10,7 +10,7 @@ pub struct Title<'a> {
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

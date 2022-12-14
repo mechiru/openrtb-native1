@@ -3,7 +3,7 @@
 /// The Image object to be used for all image elements of the Native ad such as Icons, Main Image,
 /// etc. Recommended sizes and aspect ratios are included in the Image Asset Types section.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Image<'a> {
+pub struct Image {
     /// optional; integer; -
     /// Type ID of the image element supported by the publisher. The publisher can display this
     /// information in an appropriate format. See Table Image Asset Types.
@@ -39,13 +39,13 @@ pub struct Image<'a> {
     /// to “image/jpg” “image/gif”. Each implementing Exchange should have their own list of
     /// supported types in the integration docs. See Wikipedia's MIME page for more information and
     /// links to all IETF RFCs. If blank, assume all types are allowed.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
-    pub mimes: Option<Vec<std::borrow::Cow<'a, str>>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub mimes: Option<Vec<String>>,
 
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

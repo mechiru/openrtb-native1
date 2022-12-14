@@ -6,7 +6,7 @@
 /// present in each object. All others should be null/absent. The id is to be unique within the
 /// AssetObject array so that the response can be aligned.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Asset<'a> {
+pub struct Asset {
     /// optional; int; -
     /// Optional if assetsurl/dcourl is being used; required if embedded asset is being used.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -22,20 +22,20 @@ pub struct Asset<'a> {
     pub required: bool,
 
     /// recommended; array of object; -
-    #[serde(borrow, flatten, default, skip_serializing_if = "Option::is_none")]
-    pub value: Option<crate::response::AssetValue<'a>>,
+    #[serde(flatten, default, skip_serializing_if = "Option::is_none")]
+    pub value: Option<crate::response::AssetValue>,
 
     /// optional; object; -
     /// Link object for call to actions. The link object applies if the asset item is activated
     /// (clicked). If there is no link object on the asset, the parent link object on the bid
     /// response applies.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
-    pub link: Option<crate::response::Link<'a>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub link: Option<crate::response::Link>,
 
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

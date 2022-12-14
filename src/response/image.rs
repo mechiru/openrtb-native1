@@ -5,7 +5,7 @@
 /// It is recommended that if assetsurl/dcourl is being used rather than embedded assets, that an
 /// image of each recommended aspect ratio (per the Image Types table) be provided for image type 3.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Image<'a> {
+pub struct Image {
     /// optional; integer; -
     /// Required for assetsurl or dcourl responses, not required for embedded asset responses. The
     /// type of image element being submitted from the Image Asset Types table.
@@ -14,8 +14,7 @@ pub struct Image<'a> {
 
     /// required; string; -
     /// The text associated with the text element.
-    #[serde(borrow)]
-    pub url: std::borrow::Cow<'a, str>,
+    pub url: String,
 
     /// recommended; integer; -
     /// Width of the image in pixels. Recommended for embedded asset responses. Required for
@@ -32,7 +31,7 @@ pub struct Image<'a> {
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

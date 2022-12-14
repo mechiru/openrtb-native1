@@ -5,7 +5,7 @@
 /// Count, Stars, Downloads, Price count etc. It is also generic for future native elements not
 /// contemplated at the time of the writing of this document.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Data<'a> {
+pub struct Data {
     /// optional; integer; -
     /// Required for assetsurl/dcourl responses, not required for embedded asset responses. The
     /// type of data element being submitted from the Data Asset Types table.
@@ -22,12 +22,12 @@ pub struct Data<'a> {
     /// required; string; -
     /// The formatted string of data to be displayed. Can contain a formatted value such as “5
     /// stars” or “$10” or “3.4 stars out of 5”.
-    pub value: std::borrow::Cow<'a, str>,
+    pub value: String,
 
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

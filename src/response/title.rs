@@ -5,11 +5,10 @@
 /// that three title objects be provided, the length of each of which is less than or equal to the
 /// three recommended maximum title lengths (25,90,140).
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Title<'a> {
+pub struct Title {
     /// required; string; -
     /// The text associated with the text element.
-    #[serde(borrow)]
-    pub text: std::borrow::Cow<'a, str>,
+    pub text: String,
 
     /// optional; integer; -
     /// The length of the title being provided. Required if using assetsurl/dcourl representation,
@@ -20,7 +19,7 @@ pub struct Title<'a> {
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

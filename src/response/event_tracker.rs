@@ -6,7 +6,7 @@
 /// impression time, so it’s not generally recommended for the buyer to respond with javascript
 /// trackers on other events, but the appropriateness of this is up to each buyer.
 #[derive(serde::Serialize, serde::Deserialize, Debug, PartialEq, Clone)]
-pub struct EventTracker<'a> {
+pub struct EventTracker {
     /// required; integer; -
     /// Type of event to track. See Event Types table.
     pub event: crate::EventType,
@@ -17,20 +17,20 @@ pub struct EventTracker<'a> {
 
     /// optional; text; -
     /// The URL of the image or js. Required for image or js, optional for custom.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
-    pub url: Option<std::borrow::Cow<'a, str>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub url: Option<String>,
 
     /// optional; object containing key:value pairs; -
     /// To be agreed individually with the exchange, an array of key:value objects for custom
     /// tracking, for example the account number of the DSP with a tracking company. IE
     /// `{“accountnumber”:”123”}`.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub customdata: Option<serde_json::Map<String, serde_json::Value>>,
 
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

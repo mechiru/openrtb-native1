@@ -3,11 +3,10 @@
 /// Corresponds to the Video Object in the request, yet containing a value of a conforming VAST tag
 /// as a value.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Video<'a> {
+pub struct Video {
     /// required; string; -
     /// vast xml.
-    #[serde(borrow)]
-    pub vasttag: std::borrow::Cow<'a, str>,
+    pub vasttag: String,
 }
 
 #[cfg(test)]

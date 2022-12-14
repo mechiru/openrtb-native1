@@ -5,7 +5,7 @@
 /// native elements not contemplated at the time of the writing of this document. In some cases,
 /// additional recommendations are also included in the Data Asset Types table.
 #[derive(serde::Serialize, serde::Deserialize, Debug, PartialEq, Clone)]
-pub struct Data<'a> {
+pub struct Data {
     /// required; integer; -
     /// Type ID of the element supported by the publisher. The publisher can display this
     /// information in an appropriate format. See Data Asset Types table for commonly used
@@ -20,7 +20,7 @@ pub struct Data<'a> {
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

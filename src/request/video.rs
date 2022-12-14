@@ -5,12 +5,12 @@
 /// restrictions. Here are the required attributes of the Video Object. For optional attributes
 /// please refer to OpenRTB.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Video<'a> {
+pub struct Video {
     /// required; array of string; -
     /// Content MIME types supported. Popular MIME types include, but are not limited to
     /// “video/x-ms- wmv” for Windows Media, and “video/x-flv” for Flash Video, or “video/mp4”.
     /// Note that native frequently does not support flash.
-    pub mimes: Vec<std::borrow::Cow<'a, str>>,
+    pub mimes: Vec<String>,
 
     /// required; integer; -
     /// Minimum video ad duration in seconds.
@@ -28,7 +28,7 @@ pub struct Video<'a> {
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

@@ -4,7 +4,7 @@
 /// the bid response, and which types of tracking are available for each event type, and is included
 /// as an array in the request.
 #[derive(serde::Serialize, serde::Deserialize, Debug, PartialEq, Clone)]
-pub struct EventTracker<'a> {
+pub struct EventTracker {
     /// required; integer; -
     /// Type of event available for tracking. See Event Types table.
     pub event: crate::EventType,
@@ -17,7 +17,7 @@ pub struct EventTracker<'a> {
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 

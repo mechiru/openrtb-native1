@@ -6,7 +6,7 @@
 /// supports only JSON-encoded strings, many exchanges have implemented a formal object. Check with
 /// your integration docs.
 #[derive(serde::Serialize, serde::Deserialize, Debug, PartialEq, Clone)]
-pub struct Request<'a> {
+pub struct Request {
     /// optional; string; 1.2
     /// Version of the Native Markup version in use.
     #[serde(default)]
@@ -49,7 +49,7 @@ pub struct Request<'a> {
     /// required; array of objects; -
     /// An array of Asset Objects. Any bid response must comply with the array of elements
     /// expressed in the bid request.
-    pub assets: Vec<crate::request::Asset<'a>>,
+    pub assets: Vec<crate::request::Asset>,
 
     /// optional; integer; 0
     /// Whether the supply source / impression supports returning an assetsurl instead of an asset
@@ -74,7 +74,7 @@ pub struct Request<'a> {
     /// optional; array of objects; -
     /// Specifies what type of event tracking is supported - see Event Trackers Request Object.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub eventtrackers: Option<Vec<crate::request::EventTracker<'a>>>,
+    pub eventtrackers: Option<Vec<crate::request::EventTracker>>,
 
     /// recommended; integer; 0
     /// Set to 1 when the native ad supports buyer-specific privacy notice. Set to 0 (or field
@@ -89,11 +89,11 @@ pub struct Request<'a> {
     /// optional; object; -
     /// This object is a placeholder that may contain custom JSON agreed to by the parties to
     /// support flexibility beyond the standard defined in this specification.
-    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<serde_json::Map<String, serde_json::Value>>,
 }
 
-impl<'a> Default for Request<'a> {
+impl Default for Request {
     fn default() -> Self {
         Self {
             ver: Default::default(),
